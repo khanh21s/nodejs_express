@@ -2,7 +2,7 @@
   "scripts": {
     "dev": "nodemon index.js",
     "serve": "node index.js",
-    "scss": "sass --watch public/scss:public/css"
+    "scss": "sass src/scss:public/css --watch"
   },
   "dependencies": {
     "express": "^5.2.1",

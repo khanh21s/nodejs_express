@@ -12,13 +12,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.engine("hbs", engine({
     extname: ".hbs",
     defaultLayout: "main",
-    layoutsDir: path.join(__dirname, 'views/layouts')
+    layoutsDir: path.join(__dirname, 'src/views/layouts')
 }));
 
 app.set("view engine", "hbs");
 
 
-app.set("views", path.join(__dirname, 'views'));
+app.set("views", path.join(__dirname, 'src/views'));
 
 app.get('/', function (req, res) {
     res.render("home", {name: "Khanh", age: 20});
