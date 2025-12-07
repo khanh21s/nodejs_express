@@ -6,10 +6,12 @@ const app = express();
 const port = 3000;
 
 // middleware
-app.use(morgan('combined'));
+// app.use(morgan('combined'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 
-app.engine("hbs", engine({
+app.engine("hbs", engine({ 
     extname: ".hbs",
     defaultLayout: "main",
     layoutsDir: path.join(__dirname, 'src/views/layouts')
@@ -28,6 +30,11 @@ app.get('/', function (req, res) {
 
 app.get('/search', (req, res) => {
     res.render("search");
+})
+
+app.post('/search', (req, res) => {
+    res.send('');
+    console.log(req.body);
 })
 
 app.listen(port, () => {
