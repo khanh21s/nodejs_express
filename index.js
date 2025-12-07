@@ -25,8 +25,9 @@ app.get('/', function (req, res) {
     console.log('test ok');
 });
 
-app.get('/home', (req, res) => {
-    res.render("home");
+
+app.get('/search', (req, res) => {
+    res.render("search");
 })
 
 app.listen(port, () => {
