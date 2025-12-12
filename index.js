@@ -2,19 +2,28 @@ const express = require('express');
 const morgan = require('morgan');
 const { engine } = require('express-handlebars');
 const path = require('path');
+const route = require('./src/routes/search.route.js');
+const db = require('./src/config/db/index.js');
 const app = express();
 const port = 3000;
+
 
 // middleware
 // app.use(morgan('combined'));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.engine("hbs", engine({ 
+// connect to db
+db.connectToDatabase();
+
+app.engine("hbs", engine({
     extname: ".hbs",
     defaultLayout: "main",
-    layoutsDir: path.join(__dirname, 'src/views/layouts')
+    layoutsDir: path.join(__dirname, 'src/views/layouts'),
+    helpers: {
+        json: context => JSON.stringify(context, null, 2)
+    }
 }));
 
 app.set("view engine", "hbs");
@@ -23,21 +32,14 @@ app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, 'src/views'));
 
 app.get('/', function (req, res) {
-    res.render("home", {name: "Khanh", age: 20});
+    res.render("home", { name: "Khanh", age: 20 });
     console.log('test ok');
 });
 
+app.use('/search', route);
 
-app.get('/search', (req, res) => {
-    res.render("search");
-})
-
-app.post('/search', (req, res) => {
-    res.send('');
-    console.log(req.body);
-})
 
 app.listen(port, () => {
-    console.log(`Server running on prot http://localhost:${port}`);
-    
+    console.log(`Server running on port http://localhost:${port}`);
+
 });

@@ -7,3 +7,15 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+<div>
+    <h1>ds ng</h1>
+    <ul class="couse_list">
+        {{#each couse}}
+        <a href="/khoa-hoc/{{this.slug}}">
+        <li>{{this.name}}</li>
+        </a>
+        <li>{{this.age}}</li>
+        {{/each}}
+    </ul>
+</div>
+{{!-- <pre>{{{json couse}}}</pre> --}}
