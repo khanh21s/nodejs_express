@@ -1,15 +1,20 @@
+/*
+
+Author: Khanhsdv
+
+*/
 const express = require('express');
 const morgan = require('morgan');
 const { engine } = require('express-handlebars');
 const path = require('path');
-const route = require('./src/routes/search.route.js');
+const route = require('./src/routes/index.route.js');
 const db = require('./src/config/db/index.js');
 const app = express();
 const port = 3000;
 
 
 // middleware
-// app.use(morgan('combined'));
+app.use(morgan('combined'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -27,8 +32,6 @@ app.engine("hbs", engine({
 }));
 
 app.set("view engine", "hbs");
-
-
 app.set("views", path.join(__dirname, 'src/views'));
 
 app.get('/', function (req, res) {
@@ -36,10 +39,9 @@ app.get('/', function (req, res) {
     console.log('test ok');
 });
 
-app.use('/search', route);
+route(app);
 
 
 app.listen(port, () => {
-    console.log(`Server running on port http://localhost:${port}`);
-
+    console.log(`Server running on http://localhost:${port}`);
 });
