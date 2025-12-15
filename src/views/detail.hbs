@@ -1,0 +1,24 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each couse}}
+    <tr>
+      <th scope="row">{{inc @index 1}}</th>
+      <td>{{this.name}}</td>
+      <td>{{this.age}}</td>
+      <td>{{this.slug}}</td>
+      <td><a href="detail/{{this._id}}/edit">Edit</a></td>
+      <td><a href="">Delete</a></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
