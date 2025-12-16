@@ -16,7 +16,7 @@ class Create {
 
             res.render("success");
         } catch (error) {
-            console.error("CREATE ERROR:", error); 
+            console.error("CREATE ERROR:", error);
             res.status(500).json({message: 'error create'});
         }
     }

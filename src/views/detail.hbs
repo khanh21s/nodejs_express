@@ -17,7 +17,12 @@
       <td>{{this.age}}</td>
       <td>{{this.slug}}</td>
       <td><a href="detail/{{this._id}}/edit">Edit</a></td>
-      <td><a href="">Delete</a></td>
+      <td>
+        <form action="detail/{{this._id}}/delete?_method=DELETE" method="POST">
+        <button type="submit" class="btn btn-danger" onclick="">Delete</button>
+        </button>
+        </form>
+      </td>
     </tr>
     {{/each}}
   </tbody>
